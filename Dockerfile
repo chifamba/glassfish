@@ -45,14 +45,14 @@ RUN apt-get update && apt-get install --assume-yes maven3
 RUN ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
 
 # Copy gf4 answer files for silent-mode installation
-ADD gf4.conf /tmp/gf4.conf
+ADD gf.conf /tmp/gf.conf
 
 # Download latest glassfish4 installer
 RUN wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://dlc.sun.com.edgesuite.net/glassfish/4.0/release/glassfish-4.0-unix-ml.sh" -O /tmp/glassfish-4.0-unix-ml.sh
 
 RUN chmod u+x /tmp/glassfish-4.0-unix-ml.sh;
 # Install gf4 in silent-mode, update-tools and start service 
-RUN cd /tmp; ./glassfish-4.0-unix-ml.sh -a gf4.conf -s
+RUN cd /tmp; ./glassfish-4.0-unix-ml.sh -a gf.conf -s
 
 #remove the installer
 RUN rm /tmp/glassfish-4.0-unix-ml.sh
